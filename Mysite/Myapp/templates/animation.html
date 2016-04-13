@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+ <html class="no-js" lang="en"></html>
+<head><a id="_top"></a>
+  <meta charset="utf-8" />
+
+
+  <meta name="viewport" content="width=device-width" />
+
+  <title>二次元流媒体博客|弹幕网动画&视频</title>
+  
+
+<link rel="stylesheet" href="/static/css/foundation.min.css">
+<link rel="stylesheet" href="/static/css/main.css">
+<link rel="stylesheet" href="/static/css/app.css">
+<link rel="stylesheet" href="/static/css/ligature.css">
+<link rel='stylesheet' href='/static/css/style.css' media='screen' />
+
+
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.lazyload.min.js"></script>
+<script type="text/javascript" src="/static/js/blocksit.min.js"></script>
+<script src="/static/js/modernizr.foundation.js"></script>
+<script type="text/javascript" src="/static/js/top.js"></script>
+
+
+  
+
+ 
+
+</head><!-- END Header -->
+<body>
+
+<nav>
+
+     <div class="twelve columns header_nav">
+     <div class="row">
+
+        <ul id="menu-header" class="nav-bar horizontal">
+		 <li class="active"><a href="/index"><font face="SimHei">首页</font></a></li>
+        <li class="active"><a href="/animation"><font face="SimHei">弹幕网动画&视频</font></a></li>
+        <li class="active"><a href="#"><font face="SimHei">漫画(待添加)</font></a></li>
+        <li class="active"><a href="#"><font face="SimHei">音乐(待添加)</font></a></li></a></li>
+        <li class="active"><a href="#"><font face="SimHei">游戏(待添加)</font></a></li></a></li>
+        </ul>
+
+        <script type="text/javascript">
+         //<![CDATA[
+         $('ul#menu-header').nav-bar();
+          //]]>
+        </script>
+
+      </div>
+         {% if loginstatus == 'not_active' %}
+         <div class="two columns"  style="float:right;" >
+              <p style="margin: 6px 0">
+                <a href="/register" class="button radius">注册</a> <a href="/login" class="button secondary radius">登陆</a>
+              </p>
+            </div>
+         {% elif loginstatus == 'active' %}
+         <div class="two columns"  style="float:right;" >
+              <p style="margin: 6px 0">
+                <a href="/shared/animation" class="button radius">欢迎回来,{{username}},点击分享弹幕网视频</a> <a href="/logout" class="button secondary radius">注销</a>
+              </p>
+            </div>
+         {% endif %}
+
+      </div>
+
+
+</nav>
+        <div style="clear: both;ba" ></div>
+
+        <div id="wrapper">
+            <div id="container" >
+
+		{% if animations %}
+		  {% for animation in animations %}
+				{% if animation.animation.title %}
+				<div class=' grid'>
+				<div class="cover" >
+				<a href="{{ animation.animation.url }}"><img src="/static/images/{{ animation.animation.animations_image.image_id }}.jpg" class="img-responsive" alt=""></a>
+				</div>
+					<div class="comopasser-bottom">
+					<h4><a href="{{ animation.animation.url }}"><font face="SimHei">{{ animation.animation.title }}</font></a></h4>
+					<p>TAG:{{ animation.animation.tag }}</p>
+					<p>{{ animation.animation.info }}</p>
+						<div class="curtir">
+							<li>{{ animation.animation.time }}</li>
+							<li><div class="fb-share-button" data-href="https://developers.facebook.com/w3layouts/" data-layout="button_count"></div>
+							<!--<li><a class="cap" href="#"><i class="inter1"> </i><span class="icon_text1">253</span></a></li>-->
+						</div>
+				</div>
+			</div>
+				{% endif %}
+			{% endfor %}
+		{% else %}
+		<div><h2 align="center" ><font face="SimHei">然而你并没有分享任何动画或视频╮(╯_╰)╭</font></h2></div>
+
+		{% endif %}
+	        </div> <!-- end Masonry container -->
+        </div>
+
+       <div id="test" style="display:none;">
+		   {% if test_allow == 'true' %}
+			{% if animations %}
+			  {% for animation in animations %}
+					{% if animation.animation.title %}
+			   <div class=' grid'>
+					<div id="cover" >
+					<a href="{{ animation.animation.url }}"><img src="/static/images/{{ animation.animation.animations_image.image_id }}.jpg" class="img-responsive" alt=""></a>
+					</div>
+						<div class="comopasser-bottom">
+						<h4><a href="{{ animation.animation.url }}">{{ animation.animation.title }}</a></h4>
+						<p>TAG:{{ animation.animation.tag }}</p>
+						<p>{{ animation.animation.info }}</p>
+							<div class="curtir">
+								<li>{{ animation.animation.time }}</li>
+								<!--<li><div class="fb-share-button" data-href="https://developers.facebook.com/w3layouts/" data-layout="button_count"></div>-->
+								<div id="form_top"><a href="#_top" title="回到顶部"><div class="top_img"></div></a></div>
+								</div>
+
+								</div>
+								</div>
+					   {% endif %}
+					{% endfor %}
+					{% else %}
+					<font face="SimHei"><h2>你没有搜藏任何动画或视频╮(╯_╰)╭</h2></font>
+			{% endif %}
+		   {% endif %}
+
+        </div>
+
+
+
+<!-- ######################## Footer ######################## -->
+        <script type="text/javascript">
+$(function(){
+	$("img.lazy").lazyload({
+		load:function(){
+			$('#container').BlocksIt({
+				numOfCol:5,
+				offsetX: 8,
+				offsetY: 8
+			});
+		}
+	});
+	$(window).scroll(function(){
+			// 当滚动到最底部以上50像素时， 加载新内容
+		if ($(document).height() - $(this).scrollTop() - $(this).height()<50){
+			$('#container').append($("#test").html());
+			$('#container').BlocksIt({
+				numOfCol:5,
+				offsetX: 8,
+				offsetY: 8
+			});
+			$("img.lazy").lazyload();
+		}
+	});
+
+	//window resize
+	var currentWidth = 1100;
+	$(window).resize(function() {
+		var winWidth = $(window).width();
+		var conWidth;
+		if(winWidth < 660) {
+			conWidth = 440;
+			col = 2
+		} else if(winWidth < 880) {
+			conWidth = 660;
+			col = 3
+		} else if(winWidth < 1100) {
+			conWidth = 880;
+			col = 4;
+		} else {
+			conWidth = 1100;
+			col = 5;
+		}
+
+		if(conWidth != currentWidth) {
+			currentWidth = conWidth;
+			$('#container').width(conWidth);
+			$('#container').BlocksIt({
+				numOfCol: col,
+				offsetX: 8,
+				offsetY: 8
+			});
+		}
+	});
+});
+</script>
+<!--<footer>-->
+
+      <!--<div class="row">-->
+      <!-- -->
+          <!--<div class="twelve columns footer">-->
+
+          <!--</div>-->
+          <!-- -->
+      <!--</div>-->
+
+<!--</footer>		  -->
+
+<!--&lt;!&ndash; ######################## Scripts ######################## &ndash;&gt; -->
+
+
+		<!--&lt;!&ndash; end page wrap) &ndash;&gt;-->
+		<!--&lt;!&ndash; Included JS Files (Compressed) &ndash;&gt;-->
+		<!--<script src="/static/js/foundation.min.js" type="text/javascript">-->
+		<!--</script>-->
+		<!--&lt;!&ndash; Initialize JS Plugins &ndash;&gt;-->
+		<!--<script src="/static/js/app.js" type="text/javascript">-->
+		<!--</script>-->
+		<!--&lt;!&ndash; Masonry for galleries &ndash;&gt;-->
+		<!--<script src="/static/js/masonry.js" type="text/javascript">-->
+		<!--</script>-->
+		<!--<script type="text/javascript">-->
+<!--//<![CDATA[-->
+      <!--$(function(){-->
+        <!--var $container = $('#container');-->
+        <!--$container.imagesLoaded( function(){-->
+          <!--$container.masonry({-->
+            <!--itemSelector : '.box',-->
+                        <!--isFitWidth: true,-->
+                        <!--isAnimated: true-->
+          <!--});-->
+        <!--});-->
+      <!--});-->
+  <!--//]]>-->
+  <!--</script>-->
+		<!--&lt;!&ndash; END Masonry &ndash;&gt;-->
+
+		</body>
+		</html>

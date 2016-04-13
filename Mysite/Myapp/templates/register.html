@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+
+<!--------------------
+LOGIN FORM
+by: Amit Jakhu
+www.amitjakhu.com
+--------------------->
+
+<!--META-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>注册</title>
+
+<!--STYLESHEETS-->
+<link href="/static/css/style2.css" rel="stylesheet" type="text/css" />
+
+<!--SCRIPTS-->
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<!--Slider-in icons-->
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".username").focus(function() {
+		$(".user-icon").css("left","-48px");
+	});
+	$(".username").blur(function() {
+		$(".user-icon").css("left","0px");
+	});
+	
+	$(".password").focus(function() {
+		$(".pass-icon").css("left","-48px");
+	});
+	$(".password").blur(function() {
+		$(".pass-icon").css("left","0px");
+	});
+});
+</script>
+
+</head>
+<body>
+
+<!--WRAPPER-->
+<div id="wrapper">
+
+	<!--SLIDE-IN ICONS-->
+    <div class="user-icon"></div>
+    <div class="pass-icon"></div>
+    <!--END SLIDE-IN ICONS-->
+
+<!--LOGIN FORM-->
+<div name="login-form" class="login-form" action="" method="post">
+
+	<!--HEADER-->
+    <div class="header">
+    <!--TITLE--><h1>注册</h1><!--END TITLE-->
+    </div>
+    <!--END HEADER-->
+	
+	<!--CONTENT-->
+    <div class="content">
+        {% if status == 're_err' %}
+						<div class="well">
+					<h2 class="text-warning text-center">密码重复错误</h2>
+					</div>
+        {% elif status == 'user_exist' %}
+						<div class="well">
+						<h2 class="text-danger text-center">用户已经存在</h2>
+					</div>
+        {% endif %}
+	<!--USERNAME--><input name="newusername" type="text" class="input username" value="账号" onfocus="this.value=''" onblur="if (this.value == '') {this.value = '账号';}"/><!--END USERNAME-->
+    <!--Email--><input name="email" type="text" class="input username" value="邮箱" onfocus="this.value=''"onblur="if (this.value == '') {this.value = '邮箱';}" /><!--END USERNAME-->
+    <!--PASSWORD--><input name="pd" type="password" class="input password" value="" title="请输入密码"onfocus="this.value=''" onblur="if (this.value == '') {this.value = '请输入密码';}"/><!--END PASSWORD-->
+    <!--PASSWORD--><input name="pdc" type="password" class="input password" value="" title="请再次输入密码"onfocus="this.value=''"onblur="if (this.value == '') {this.value = '请再次输入密码';}" /><!--END PASSWORD-->
+
+    <!--END CONTENT-->
+    <!--FOOTER-->
+		</div>
+    <div class="footer">
+
+    <!--REGISTER BUTTON--> <input type="submit" name="submit" value="注册" class="button" /><a href="/login" class="button radius"value="登陆">登陆</a><a href="/index" class="button radius"value="返回首页">返回首页</a>
+    </div>
+	</div>
+	<!!-GRADIENT--><div class="gradient"></div><!--END GRADIENT-->
+	 </div>
+
+
+    <!--END FOOTER-->
+
+
+
+<!--END LOGIN FORM-->
+
+<!--END WRAPPER-->
+
+<!--GRADIENT-->
+</div>
+</body>
+</html>

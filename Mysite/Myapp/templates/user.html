@@ -1,0 +1,106 @@
+<html>
+<head>
+<title>登陆注册</title>
+<link href="/static/css/style2.css" rel='stylesheet' type='text/css' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Elegent Tab Forms,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements"./>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+</script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/easyResponsiveTabs.js" type="text/javascript"></script>
+				<script type="text/javascript">
+					$(document).ready(function () {
+						$('#horizontalTab').easyResponsiveTabs({
+							type: 'default', //Types: default, vertical, accordion           
+							width: 'auto', //auto or any width like 600px
+							fit: true   // 100% fit in a container
+						});
+					});
+				   </script>
+				   <!--webfonts-->
+<!--<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,700,200italic,300italic,400italic,600italic|Lora:400,700,400italic,700italic|Raleway:400,500,300,600,700,200,100' rel='stylesheet' type='text/css'>-->
+<!--&lt;!&ndash;//webfonts&ndash;&gt;-->
+
+
+</head>
+<body>
+<div class="main">
+	<h1>Welcome</h1>
+	 <div class="sap_tabs">	
+			<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+			  <ul class="resp-tabs-list">
+			  	  <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><div class="top-img"><img src="/static/images/top-note.png" alt=""/></div><span>注册</span> </li>
+				  <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><div class="top-img"><img src="/static/images/top-lock.png" alt=""/></div><span>登陆</span></li>
+				  <div class="clear"></div>
+			  </ul>		
+			  <!---->		  	 
+			<div class="resp-tabs-container">
+					<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
+					<div class="facts">
+							<!--login1-->
+						<div class="register">
+						{% if status == 'register_success' %}
+						<div class="well">
+						<h2 class="text-success text-center">注册成功！</h2>
+						</div>
+						{% elif status == 're_err' %}
+						<div class="well">
+					<h2 class="text-warning text-center">密码重复错误</h2>
+					</div>
+					{% elif status == 'user_exist' %}
+						<div class="well">
+						<h2 class="text-danger text-center">用户已经存在</h2>
+					</div>
+				{% endif %}
+
+							<form method="POST" role="form" class="form-horizontal">
+								<p>账号</p>
+								<input type="text" class="form-control" required name = "newusername" id="username" >
+								<p>邮箱</p>
+								<input type="text" class="form-control" required name = "email"id="email" >
+								<p>密码 </p>
+								<input type="password" class="form-control" required name = "pd" id="pd">
+								<p>重复密码 </p>
+								<input type="password" class="form-control" required name = "pdc" id="pdc">
+								
+								<div class="sign-up">
+									<input type="submit" value="注册" />
+					
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>		
+				
+			
+			<div class="tab-2 resp-tab-content" aria-labelledby="tab_item-1">
+					 	<div class="facts">
+							 <div class="login">
+						{% if status == 'not_exist_or_psswd_err' %}
+						<div class="well">
+						<h2 class="text-success text-center">账号不存在或密码错误!</h2>
+						</div>
+						{% elif status == 'not_active' %}
+						<div class="well">
+					<h2 class="text-warning text-center">登录失败!</h2>
+				{% endif %}
+				
+							<form method="POST">
+								<input type="text" class="form-control"style="float:left" value="账号" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '账号';}"required name = "lusername" id="username" >
+								<input type="password" class="form-control"style="float:left"  value="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}" required name = "pd" id="pd">
+								<div class="submit two">
+									<input type="submit" value="确认" >
+									</div>
+									<div class="clear"> </div>
+								</div>
+
+							</form>
+					</div>
+				</div> 
+			</div> 	
+				
+			           	      
+			
+</body>
+</html>

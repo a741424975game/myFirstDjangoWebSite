@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+
+<!--------------------
+LOGIN FORM
+by: Amit Jakhu
+www.amitjakhu.com
+--------------------->
+
+<!--META-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>搜藏弹幕网视频</title>
+
+<!--STYLESHEETS-->
+<link href="/static/css/style2.css" rel="stylesheet" type="text/css" />
+
+<!--SCRIPTS-->
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<!--Slider-in icons-->
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".username").focus(function() {
+		$(".user-icon").css("left","-48px");
+	});
+	$(".username").blur(function() {
+		$(".user-icon").css("left","0px");
+	});
+	
+	$(".password").focus(function() {
+		$(".pass-icon").css("left","-48px");
+	});
+	$(".password").blur(function() {
+		$(".pass-icon").css("left","0px");
+	});
+});
+</script>
+
+</head>
+<body>
+
+<!--WRAPPER-->
+<div id="wrapper">
+
+	<!--SLIDE-IN ICONS-->
+    <div class="user-icon"></div>
+    <div class="pass-icon"></div>
+    <!--END SLIDE-IN ICONS-->
+
+<!--LOGIN FORM-->
+<form name="login-form" class="login-form" action="" method="post">
+
+	<!--HEADER-->
+    <div class="header">
+    <!--TITLE--><h1>搜藏弹幕网视频</h1><!--END TITLE-->
+    </div>
+    <!--END HEADER-->
+	
+	<!--CONTENT-->
+    <div class="content">
+
+
+
+
+
+			{% if return == 'success' %}
+			<div><h2>搜藏成功~!</h2></div>
+		{% elif return == 'fail' %}
+			<div><h2>搜藏失败,视频地址输入有误!</h2></div>
+		{% endif %}
+			<form >
+	                            <select  name="animation_site" style="width:100%" class="input password"  name="animation_site">
+								<option value="" selected="selected">请选择你的视频来源</option>
+								{% for site in sites %}
+									<option value='{{ site.site_name }}'>{{ site.site_name }}</option>
+								{% endfor %}
+								</select>
+
+		<input title="请输入视频网址,如:http://www.acfun.tv/v/ac1961291" name="animation_url" type="test" class="input password" /><!--END PASSWORD-->
+    <!--END CONTENT-->
+		<!--FOOTER-->
+		</div>
+    <div class="footer">
+    <!--LOGIN BUTTON--><!--END LOGIN BUTTON-->
+		<div class="two columns"  style="float:right;" >
+              <p style="margin: 6px 0">
+                <a href="/animation" class="button radius"value="返回">返回</a> <input type="submit" name="submit" value="确定" class="button" />
+              </p>
+            </div>
+    </div>
+	</form>
+
+    <!--END FOOTER-->
+
+
+<!--END LOGIN FORM-->
+
+<!--END WRAPPER-->
+
+<!--GRADIENT--><div class="gradient"></div><!--END GRADIENT-->
+
+		</form>
+	</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+
+<!--------------------
+LOGIN FORM
+by: Amit Jakhu
+www.amitjakhu.com
+--------------------->
+
+<!--META-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>登陆</title>
+
+<!--STYLESHEETS-->
+<link href="/static/css/style2.css" rel="stylesheet" type="text/css" />
+
+<!--SCRIPTS-->
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<!--Slider-in icons-->
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".username").focus(function() {
+		$(".user-icon").css("left","-48px");
+	});
+	$(".username").blur(function() {
+		$(".user-icon").css("left","0px");
+	});
+	
+	$(".password").focus(function() {
+		$(".pass-icon").css("left","-48px");
+	});
+	$(".password").blur(function() {
+		$(".pass-icon").css("left","0px");
+	});
+});
+</script>
+
+</head>
+<body>
+
+<!--WRAPPER-->
+<div id="wrapper">
+
+	<!--SLIDE-IN ICONS-->
+    <div class="user-icon"></div>
+    <div class="pass-icon"></div>
+    <!--END SLIDE-IN ICONS-->
+
+<!--LOGIN FORM-->
+<div name="login-form" class="login-form" action="" method="post">
+
+	<!--HEADER-->
+    <div class="header">
+    <!--TITLE--><h1>登陆</h1><!--END TITLE-->
+    </div>
+    <!--END HEADER-->
+	
+	<!--CONTENT-->
+    <div class="content">
+        {% if status == 'not_exist_or_psswd_err' %}
+						<div class="well">
+						<h2 class="text-success text-center">账号不存在或密码错误!</h2>
+						</div>
+						{% elif status == 'not_active' %}
+						<div class="well">
+					<h2 class="text-warning text-center">登录失败!</h2>
+				{% endif %}
+	<!--USERNAME--><input name="lusername" type="text" class="input username" value="账号" onfocus="this.value=''" onblur="if (this.value == '') {this.value = '账号';}"/><!--END USERNAME-->
+    <!--PASSWORD--><input name="pd" type="password" class="input password"  title="请输入密码" /><!--END PASSWORD-->
+
+						</div>
+
+    <!--END CONTENT-->
+    
+    <!--FOOTER-->
+    <div class="footer">
+    <!--LOGIN BUTTON--><input type="submit" name="submit" value="登陆" class="button" /><a href="/register" class="button radius"value="注册">注册</a><a href="/index" class="button radius"value="返回首页">返回首页</a><!--END LOGIN BUTTON-->
+    </div>
+		</div>
+	<!--END FOOTER-->
+<!!-GRADIENT--><div class="gradient"></div><!--END GRADIENT-->
+		</div>
+
+	</div>
+</body>
+</html>
